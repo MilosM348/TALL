@@ -8,6 +8,8 @@ use App\Http\Livewire\Auth\Passwords\Email;
 use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
+use App\Http\Livewire\Datepicker;
+use App\Http\Livewire\Pikaday;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,26 +26,21 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome')->name('home');
 
 Route::middleware('guest')->group(function () {
-    Route::get('login', Login::class)
-        ->name('login');
+    Route::get('login', Login::class)->name('login');
 
-    Route::get('register', Register::class)
-        ->name('register');
+    Route::get('register', Register::class)->name('register');
 });
 
-Route::get('password/reset', Email::class)
-    ->name('password.request');
+Route::get('password/reset', Email::class)->name('password.request');
 
-Route::get('password/reset/{token}', Reset::class)
-    ->name('password.reset');
+Route::get('password/reset/{token}', Reset::class)->name('password.reset');
 
 Route::middleware('auth')->group(function () {
     Route::get('email/verify', Verify::class)
         ->middleware('throttle:6,1')
         ->name('verification.notice');
 
-    Route::get('password/confirm', Confirm::class)
-        ->name('password.confirm');
+    Route::get('password/confirm', Confirm::class)->name('password.confirm');
 });
 
 Route::middleware('auth')->group(function () {
@@ -51,6 +48,17 @@ Route::middleware('auth')->group(function () {
         ->middleware('signed')
         ->name('verification.verify');
 
-    Route::post('logout', LogoutController::class)
-        ->name('logout');
+    Route::post('logout', LogoutController::class)->name('logout');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('datepicker', Datepicker::class)->name('datepicker');
+
+    Route::post('datepicker', Datepicker::class)->name('datepicker_post');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('pikaday', Pikaday::class)->name('pikaday');
+
+    Route::post('pikaday', Pikaday::class)->name('pikaday_post');
 });

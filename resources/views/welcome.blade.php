@@ -30,8 +30,11 @@
 
         <div class="flex items-center justify-center">
             @auth
-                <x-datepicker />
-                <x-rangepicker />
+                <a href="{{ route('datepicker') }}">
+                    <h1 class="text-5xl font-extrabold tracking-wider text-center text-gray-600">
+                        Date and Range Picker
+                    </h1>
+                </a>
             @else
                 <div class="flex flex-col justify-around">
                     <div class="space-y-6">
