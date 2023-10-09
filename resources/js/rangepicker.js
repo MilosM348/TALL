@@ -136,11 +136,16 @@ export default function rangepicker(wire) {
         },
 
         setDateValues() {
+            let wireModelEnd = this.$refs.end.getAttribute("wire:model");
+            let wireModelStart = this.$refs.start.getAttribute("wire:model");
+
             if (this.dateFrom) {
                 this.dateFromValue = this.dateFrom.toDateString();
+                wire.set(wireModelStart, this.dateFromValue.toString(), true);
             }
             if (this.dateTo) {
                 this.dateToValue = this.dateTo.toDateString();
+                wire.set(wireModelEnd, this.dateToValue.toString(), true);
             }
         },
 

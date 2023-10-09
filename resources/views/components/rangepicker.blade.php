@@ -1,6 +1,8 @@
 @props([ 'rangedate_from', 'rangedate_to' ])
 
-<div x-data="rangepicker($wire)" x-cloak>
+@php( $sharedClasses = "" )
+
+<div x-data="rangepicker($wire)" x-cloak {{ $attributes }}>
     <div class="container mx-auto px-4 py-2 md:py-10">
         <div>
             <label for="rangepicker" class="font-bold mb-1 text-gray-700 block">Select Date Range</label>
@@ -8,19 +10,23 @@
                 <div class="inline-flex items-center border rounded-md mt-3 bg-gray-200">
                     <div x-on:change="outputDateFromValue = $event.target.value">
                         <input type="text" 
-                            @click="endToShow = 'from'; init(); showDatepicker = true"  
+                            @click="endToShow = 'from'; init(); showDatepicker = true"
+                            x-ref="start" 
                             x-bind:value="outputDateFromValue"
                             :class="{'font-semibold': endToShow == 'from' }" 
                             class="focus:outline-none border-0 p-2 w-40 border-gray-300 rounded-l-md border-r"
+                            {{ $rangedate_from->attributes->merge(['class' => $sharedClasses ]) }}
                             />
                     </div>
                     <div class="inline-block px-2 h-full">to</div>
                     <div x-on:change="outputDateToValue = $event.target.value">
                         <input type="text" 
                             @click="endToShow = 'to'; init(); showDatepicker = true" 
+                            x-ref="end" 
                             x-bind:value="outputDateToValue" 
                             :class="{'font-semibold': endToShow == 'to' }" 
                             class="focus:outline-none border-0 p-2 w-40 border-gray-300 rounded-r-md border-l"
+                            {{ $rangedate_to->attributes->merge(['class' => $sharedClasses ]) }}
                             />
                     </div>
                 </div>
