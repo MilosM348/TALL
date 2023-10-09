@@ -1,16 +1,17 @@
 <div class="container mx-auto px-4 py-2 md:py-10">
     <div
-        x-data="{ value: @entangle($attributes->wire('model')) }"
-        x-on:change="value = $event.target.value"
+        x-data="{ date: @entangle($attributes->wire('model')) }"
+        x-on:change="date = $event.target.value"
         x-init="
-            new Pikaday({ field: $refs.input, 'format': 'DD.MM.YYYY', firstDay: 1 });"
+            new Pikaday({ field: $refs.pikadate, 'format': 'DD.MM.YYYY', firstDay: 1 });"
     >
+        <label class="font-bold mb-3 text-gray-700 block">Select Date</label>
         <input 
-            x-ref="input"
-            x-bind:value="value"
+            x-ref="pikadate"
+            x-bind:value="date"
             type="text" 
             placeholder="Select date"
-            class="pl-10 block w-full shadow-sm sm:text-lg bg-gray-50 border-gray-300 @if($error) focus:ring-danger-500 focus:border-danger-500 border-danger-500 text-danger-500 pr-10 @else focus:ring-primary-500 focus:border-primary-500 @endif rounded-md" 
+            class="pl-10 block w-full shadow-sm sm:text-lg bg-gray-50 border-gray-300 rounded-md" 
             {{ $attributes->whereDoesntStartWith('wire:model') }} 
         />
     </div>

@@ -8,6 +8,8 @@
                 </div>
                 <div class="antialiased">
                     <x-rangepicker>
+                        <x-slot name="rangedate_from" wire:model="rangedate.rangedate_from"></x-slot>
+                        <x-slot name="rangedate_to"   wire:model="rangedate.rangedate_to"></x-slot>
                     </x-rangepicker>
                 </div>
             </div>

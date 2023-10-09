@@ -3,10 +3,10 @@
 
         <div class="flex items-center justify-center">
             <x-pikaday wire:model="pikaday" id="pikaday"
-                autocomplete="off" :error="$errors->first('pikaday')"/>
+                autocomplete="off" />
             <x-rangepikaday class="flex items-end">
                 <x-slot name="start_date" wire:model="rangepikaday.start_date"></x-slot>
-                <x-slot name="end_date"   wire:model="rangepikaday.due_date"></x-slot>
+                <x-slot name="end_date"   wire:model="rangepikaday.end_date"></x-slot>
             </x-rangepikaday>
         </div>
 

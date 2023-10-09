@@ -30,11 +30,19 @@
 
         <div class="flex items-center justify-center">
             @auth
-                <a href="{{ route('datepicker') }}">
-                    <h1 class="text-5xl font-extrabold tracking-wider text-center text-gray-600">
-                        Date and Range Picker
-                    </h1>
-                </a>
+                <div>
+                    <a href="{{ route('datepicker') }}">
+                        <h1 class="text-5xl font-extrabold tracking-wider text-center text-gray-600">
+                            Custom Date and Range Picker
+                        </h1>
+                    </a>
+                    <br />
+                    <a href="{{ route('pikaday') }}">
+                        <h1 class="text-5xl font-extrabold tracking-wider text-center text-gray-600">
+                            Pikaday Date and Range Picker
+                        </h1>
+                    </a>
+                </div>
             @else
                 <div class="flex flex-col justify-around">
                     <div class="space-y-6">

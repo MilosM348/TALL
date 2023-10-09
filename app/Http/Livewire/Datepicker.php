@@ -10,18 +10,14 @@ class Datepicker extends Component
     /** @var string */
     public $datepicker = '';
 
-    /** @var string */
-    public $rangedateFrom = '';
-
-    /** @var string */
-    public $rangedateTo = '';
+    public $rangedate = ['rangedate_from' => '', 'rangedate_to' => ''];
 
     public function datepicker()
     {
         $date = Date::create([
             'datepicker' => $this->datepicker,
-            'rangedate_from' => $this->rangedateFrom,
-            'rangedate_to' => $this->rangedateTo,
+            'rangedate_from' => $this->rangedate['rangedate_from'],
+            'rangedate_to' => $this->rangedate['rangedate_to'],
         ]);
         return view('livewire.datepicker')->extends('layouts.app');
     }

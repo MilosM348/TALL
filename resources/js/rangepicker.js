@@ -1,4 +1,4 @@
-export default function rangepicker() {
+export default function rangepicker(wire) {
     return {
         showDatepicker: false,
         dateFromYmd: "",

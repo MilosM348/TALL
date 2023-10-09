@@ -1,12 +1,28 @@
-<div x-data="rangepicker" x-cloak>
+@props([ 'rangedate_from', 'rangedate_to' ])
+
+<div x-data="rangepicker($wire)" x-cloak>
     <div class="container mx-auto px-4 py-2 md:py-10">
         <div>
             <label for="rangepicker" class="font-bold mb-1 text-gray-700 block">Select Date Range</label>
             <div class="relative" @keydown.escape="closeDatepicker()" @click.outside="closeDatepicker()">
                 <div class="inline-flex items-center border rounded-md mt-3 bg-gray-200">
-                    <input type="text" @click="endToShow = 'from'; init(); showDatepicker = true" x-model="outputDateFromValue" :class="{'font-semibold': endToShow == 'from' }" class="focus:outline-none border-0 p-2 w-40 rounded-l-md border-r border-gray-300"/>
+                    <div x-on:change="outputDateFromValue = $event.target.value">
+                        <input type="text" 
+                            @click="endToShow = 'from'; init(); showDatepicker = true"  
+                            x-bind:value="outputDateFromValue"
+                            :class="{'font-semibold': endToShow == 'from' }" 
+                            class="focus:outline-none border-0 p-2 w-40 border-gray-300 rounded-l-md border-r"
+                            />
+                    </div>
                     <div class="inline-block px-2 h-full">to</div>
-                    <input type="text" @click="endToShow = 'to'; init(); showDatepicker = true" x-model="outputDateToValue" :class="{'font-semibold': endToShow == 'to' }" class="focus:outline-none border-0 p-2 w-40 rounded-r-md border-l border-gray-300"/>
+                    <div x-on:change="outputDateToValue = $event.target.value">
+                        <input type="text" 
+                            @click="endToShow = 'to'; init(); showDatepicker = true" 
+                            x-bind:value="outputDateToValue" 
+                            :class="{'font-semibold': endToShow == 'to' }" 
+                            class="focus:outline-none border-0 p-2 w-40 border-gray-300 rounded-r-md border-l"
+                            />
+                    </div>
                 </div>
                 <div 
                     class="bg-white mt-2 rounded-lg shadow p-4 absolute" 
